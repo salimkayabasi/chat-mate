@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-export default title => (req, res) => {
+export default (title, component) => (req, res) => {
   let username = null;
   if (req.user && req.user.username) {
     username = <h5>{req.user.username}</h5>;
@@ -12,6 +12,7 @@ export default title => (req, res) => {
         <body>
           <h3>{title}</h3>
           {username}
+          {component}
         </body>
       </html>)}`);
 };

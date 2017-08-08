@@ -1,3 +1,4 @@
+import faker from 'faker';
 import passport from 'passport';
 
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -12,8 +13,13 @@ export default () => {
   });
 
   passport.use(new LocalStrategy(
-    (username, password, done) => done(null, {
-      username,
+    {
+      usernameField: 'email',
+    },
+    (email, password, done) => done(null, {
+      ...faker.helpers.userCard(),
+      email,
+      avatar: faker.internet.avatar(),
     }),
   ));
 };
