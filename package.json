@@ -1,0 +1,7 @@
+{
+  "name": "chatmate",
+  "version": "0.0.0",
+  "description": "yet another chat server",
+  "main": "index.js",
+  "license": "MIT"
+}
