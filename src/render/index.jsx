@@ -1,18 +1,14 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
+import template from './html';
 
-export default (title, component) => (req, res) => {
-  let username = null;
-  if (req.user && req.user.username) {
-    username = <h5>{req.user.username}</h5>;
+export default ({ title, component, cssPath, jsPath }) => (req, res) => {
+  const options = {
+    title,
+    cssPath,
+    jsPath,
+  };
+  if (component) {
+    options.component = renderToString(component);
   }
-  res.send(`<!DOCTYPE html>${
-    ReactDOMServer.renderToStaticMarkup(
-      <html lang="en">
-        <body>
-          <h3>{title}</h3>
-          {username}
-          {component}
-        </body>
-      </html>)}`);
+  res.send(template(options));
 };

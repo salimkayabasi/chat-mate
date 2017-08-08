@@ -18,11 +18,13 @@
     "start": "node build/index.js",
     "pretest": "yarn run lint",
     "test": "jest",
-    "changelog": "github_changelog_generator"
+    "changelog": "github_changelog_generator",
+    "webpack": "webpack"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -31,7 +33,9 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "webpack": "^3.5.1",
+    "webpack-dev-server": "^2.7.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -45,8 +49,9 @@
     "log4js": "^2.3.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
   }
 }

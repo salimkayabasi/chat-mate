@@ -1,4 +1,5 @@
 import cookieParser from 'cookie-parser';
+import express from 'express';
 import session from 'express-session';
 import log4js from 'log4js';
 import passport from 'passport';
@@ -9,6 +10,7 @@ const logger = log4js.getLogger('router');
 
 class ExpressManager {
   static build(app) {
+    app.use(express.static('build/public'));
     app.use(cookieParser());
     app.use(session({
       secret: 'keyboard cat',

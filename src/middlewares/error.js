@@ -10,5 +10,5 @@ export default (err, req, res, next) => {
     logger.error('on_error', err);
   }
   res.status(err.status);
-  render(err.message, GoToHome())(req, res, next);
+  render({ title: err.message, component: GoToHome() })(req, res, next);
 };
