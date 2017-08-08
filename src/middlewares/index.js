@@ -1,3 +1,9 @@
 import auth from './auth';
+import error from './error';
+import notFound from './notFound';
 
-export default auth;
+export {
+  auth,
+  error,
+  notFound,
+};

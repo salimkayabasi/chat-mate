@@ -8,7 +8,7 @@ module.exports = {
   port: env.PORT || 3000,
   env: ENV,
   log: {
-    level: env.LOG_LEVEL || 'DEBUG',
+    level: env.LOG_LEVEL || 'debug',
     layout: env.LOG_LAYOUT || 'basic',
   },
 };
