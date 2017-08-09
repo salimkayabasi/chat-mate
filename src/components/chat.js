@@ -15,13 +15,28 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    this.socket = io.connect();
-    this.socket.on('users', (allUsers) => {
-      const users = _.filter(allUsers, user => user.id !== this.props.user.id);
-      this.setState({
-        users,
+    if (!window.socket) {
+      this.socket = io.connect();
+      this.socket.on('users', (allUsers) => {
+        const users = _.filter(allUsers, user => user.id !== this.props.user.id);
+        this.setState({
+          users,
+        });
       });
-    });
+      this.socket.on('message', (data) => {
+        const users = this.state.users;
+        const from = _.find(users, { id: data.from });
+        if (from) {
+          if (_.isUndefined(from.logs)) {
+            from.logs = [];
+          }
+          from.logs.push(data.message);
+          from.logs = _.takeRight(from.logs, 3);
+        }
+        this.setState({ users });
+      });
+      window.socket = this.socket;
+    }
   }
 
   render() {

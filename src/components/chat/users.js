@@ -7,7 +7,7 @@ class UserList extends Component {
     return (
       <div>
         <label>Connected Users: {this.props.users.length}</label>
-        <br/>
+        <br />
         {this.props.users.map(user => <UserCard user={user} key={user.id} />)}
       </div>
     );
