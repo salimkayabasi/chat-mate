@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default ({ title, component, cssPath, jsPath }) => {
+export default ({ title, component, cssPath, jsPath, initial }) => {
   let style = '';
   if (!_.isEmpty(cssPath)) {
     style = `<link rel="stylesheet" href="/assets/${cssPath}" />`;
@@ -19,6 +19,9 @@ export default ({ title, component, cssPath, jsPath }) => {
       <body>
         <div id="root">${component}</div>
       </body>
+      <script>
+        window.__APP_INITIAL_STATE__ = ${JSON.stringify(initial)}
+      </script>
       ${script}
     </html>
   `;

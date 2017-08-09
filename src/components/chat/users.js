@@ -7,6 +7,7 @@ class UserList extends Component {
     return (
       <div>
         <label>Connected Users: {this.props.users.length}</label>
+        <br/>
         {this.props.users.map(user => <UserCard user={user} key={user.id} />)}
       </div>
     );
@@ -14,7 +15,7 @@ class UserList extends Component {
 }
 
 UserList.propTypes = {
-  users: PropTypes.array,
+  users: PropTypes.array.isRequired,
 };
 
 export default UserList;
