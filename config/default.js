@@ -11,4 +11,10 @@ module.exports = {
     level: env.LOG_LEVEL || 'debug',
     layout: env.LOG_LAYOUT || 'basic',
   },
+  redis: {
+    url: env.REDIS_URL || 'redis://localhost',
+  },
+  cookie: {
+    secret: 'keyboard cat',
+  },
 };
