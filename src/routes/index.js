@@ -1,5 +1,5 @@
 import chat from './chat';
-import login from './login';
+import auth from './auth';
 import welcome from './welcome';
 
-export { welcome, login, chat };
+export { welcome, auth, chat };

@@ -12,5 +12,9 @@ export default () => {
       successRedirect: '/chat',
       failureRedirect: '/',
     }));
+  router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
   return router;
 };

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import * as io from 'socket.io-client';
 import UserList from './chat/users';
+import LogOut from './logout';
 
 class Chat extends Component {
-
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -23,7 +23,8 @@ class Chat extends Component {
   render() {
     return (
       <div>
-        <UserList users={this.state.users}></UserList>
+        <LogOut />
+        <UserList users={this.state.users} />
       </div>
     );
   }

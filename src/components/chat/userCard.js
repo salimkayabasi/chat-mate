@@ -5,7 +5,7 @@ class UserCard extends Component {
   render() {
     return (
       <div>
-        <img width={'64px'} height={'64px'} src={this.props.user.avatar}></img>
+        <img width={'64px'} height={'64px'} src={this.props.user.avatar} />
         <label>{this.props.user.username}</label>
       </div>
     );
