@@ -18,6 +18,7 @@ class SocketManager {
 
   static onConnection(socket) {
     socket.emit('message', 'connected');
+    socket.emit('users', [{ id: 1, name: 'user1' }, { id: 2, name: 'user2' }]);
   }
 }
 

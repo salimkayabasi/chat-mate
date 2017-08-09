@@ -49,6 +49,7 @@
     "log4js": "^2.3.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "socket.io": "^2.0.3",

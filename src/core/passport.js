@@ -17,6 +17,7 @@ export default () => {
       usernameField: 'email',
     },
     (email, password, done) => done(null, {
+      id: faker.random.uuid(),
       ...faker.helpers.userCard(),
       email,
       avatar: faker.internet.avatar(),
