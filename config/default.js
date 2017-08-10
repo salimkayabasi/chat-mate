@@ -16,6 +16,6 @@ module.exports = {
     url: env.REDIS_URL || 'redis://localhost',
   },
   cookie: {
-    secret: 'keyboard cat',
+    secret: env.COOKIE_SECRET || 'keyboard cat',
   },
 };
