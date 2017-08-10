@@ -7,7 +7,7 @@ import log4js from 'log4js';
 import passport from 'passport';
 import { error, notFound } from '../middlewares/';
 import { chat, auth, welcome } from '../routes/';
-import { getClient } from './util/redis';
+import getClient from './util/redis';
 
 const logger = log4js.getLogger('router');
 const RedisStore = connectRedis(session);

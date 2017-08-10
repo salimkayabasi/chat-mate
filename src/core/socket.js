@@ -5,7 +5,7 @@ import { Server } from 'http';
 import _ from 'lodash';
 import passportSocketIo from 'passport.socketio';
 import socketIo from 'socket.io';
-import { getClient } from './util/redis';
+import getClient from './util/redis';
 
 const RedisStore = connectRedis(session);
 
