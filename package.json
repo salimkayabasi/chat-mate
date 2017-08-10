@@ -19,7 +19,11 @@
     "pretest": "yarn run lint",
     "test": "jest",
     "changelog": "github_changelog_generator",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "docker-clean": "rm -rf src/ node_modules webpack.config.js",
+    "docker-prod": "yarn --prod && rm -rf yarn.lock .yarnclean",
+    "docker-build": "yarn run build && yarn run webpack && yarn docker-clean && yarn docker-prod",
+    "docker": "docker build --build-arg GIT_HASH=$(git rev-parse --short HEAD) -t chatmate:$(git rev-parse --short HEAD) ."
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -34,8 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
     "nodemon": "^1.11.0",
-    "webpack": "^3.5.1",
-    "webpack-dev-server": "^2.7.0"
+    "webpack": "^3.5.1"
   },
   "dependencies": {
     "body-parser": "^1.17.2",

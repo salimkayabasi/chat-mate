@@ -16,4 +16,5 @@ const server = SocketManager.instance.server;
 
 server.listen(config.port, () => {
   logger.info(`ChatMate is listening on port ${config.port}!`);
+  logger.debug('server_configuration', config);
 });

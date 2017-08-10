@@ -5,6 +5,7 @@ const dev = ENV === 'development';
 
 module.exports = {
   dev,
+  gitHash: env.GIT_HASH || '',
   port: env.PORT || 3000,
   env: ENV,
   log: {
