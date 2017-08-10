@@ -2,8 +2,11 @@
   "name": "chatmate",
   "version": "0.0.0",
   "description": "yet another chat server",
-  "main": "build/index.js",
+  "main": "build/server.js",
   "license": "MIT",
+  "engines": {
+    "node": "6.x"
+  },
   "scripts": {
     "major": "npm version major -m \"New major version %s\"",
     "minor": "npm version minor -m \"New minor version %s\"",
@@ -23,7 +26,8 @@
     "docker-clean": "rm -rf src/ node_modules webpack.config.js",
     "docker-prod": "yarn --prod && rm -rf yarn.lock .yarnclean",
     "docker-build": "yarn run build && yarn run webpack && yarn docker-clean && yarn docker-prod",
-    "docker": "docker build --build-arg GIT_HASH=$(git rev-parse --short HEAD) -t chatmate:$(git rev-parse --short HEAD) ."
+    "docker": "docker build --build-arg GIT_HASH=$(git rev-parse --short HEAD) -t chatmate:$(git rev-parse --short HEAD) .",
+    "heroku-postbuild": "yarn run build && yarn run webpack"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
