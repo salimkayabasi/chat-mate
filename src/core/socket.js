@@ -3,11 +3,13 @@ import connectRedis from 'connect-redis';
 import session from 'express-session';
 import { Server } from 'http';
 import _ from 'lodash';
+import log4js from 'log4js';
 import passportSocketIo from 'passport.socketio';
 import socketIo from 'socket.io';
 import getClient from './util/redis';
 
 const RedisStore = connectRedis(session);
+const logger = log4js.getLogger('socket-manager');
 
 class SocketManager {
   constructor(app) {
@@ -38,6 +40,8 @@ class SocketManager {
       .map('request.user')
       .uniqBy('id')
       .value();
+
+    logger.info('connected_users', users.length);
 
     io.emit('users', users);
   }
