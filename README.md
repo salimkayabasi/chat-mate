@@ -1,5 +1,7 @@
 # Chatmate
 
+![Preview](doc/preview.png "Preview")
+
 ### Live Demo
 
 Please check it out on [heroku](https://chat-mate.herokuapp.com/)
