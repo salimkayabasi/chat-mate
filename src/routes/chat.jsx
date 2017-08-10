@@ -2,7 +2,7 @@ import { Router } from 'express';
 import React from 'react';
 import Chat from '../components/chat';
 import { auth } from '../middlewares/';
-import render from '../render/';
+import render, { getFileName } from '../render/';
 
 export default () => {
   const router = Router();
@@ -10,7 +10,7 @@ export default () => {
     render({
       title: 'chat',
       component: <Chat user={req.user} />,
-      jsPath: 'bundle.js',
+      jsPath: getFileName('bundle'),
       initial: {
         user: req.user,
       },
