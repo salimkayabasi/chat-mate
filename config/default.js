@@ -11,6 +11,7 @@ module.exports = {
   log: {
     level: env.LOG_LEVEL || 'debug',
     layout: env.LOG_LAYOUT || 'basic',
+    http: (env.LOG_HTTP === 'true') || false,
   },
   redis: {
     url: env.REDIS_URL || 'redis://localhost',
