@@ -6,7 +6,7 @@ import session from 'express-session';
 import log4js from 'log4js';
 import passport from 'passport';
 import { error, notFound } from '../middlewares/';
-import { chat, auth, welcome } from '../routes/';
+import { auth, chat, welcome } from '../routes/';
 import getClient from './util/redis';
 
 const logger = log4js.getLogger('router');
@@ -24,8 +24,9 @@ class ExpressManager {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(log4js.connectLogger(logger, { level: 'auto' }));
-
+    if (config.log.http) {
+      app.use(log4js.connectLogger(logger, { level: 'auto' }));
+    }
     app.use(welcome());
     app.use(auth());
     app.use(chat());
