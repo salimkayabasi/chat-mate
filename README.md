@@ -1,5 +1,9 @@
 # Chatmate
 
+### Live Demo
+
+Please check it out on [heroku](https://chat-mate.herokuapp.com/)
+
 ### Requirements
 You should have installed:
 - [Node.js][1] (tested on v6.11.0) //LTS version is recommended
