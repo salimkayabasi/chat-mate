@@ -27,11 +27,22 @@ class Chat extends Component {
         const users = this.state.users;
         const from = _.find(users, { id: data.from });
         if (from) {
-          if (_.isUndefined(from.logs)) {
-            from.logs = [];
+          if (_.isUndefined(from.history)) {
+            from.history = [];
           }
-          from.logs.push(data.message);
-          from.logs = _.takeRight(from.logs, 3);
+          from.history.push(data);
+          from.history = _.sortBy(from.history, 'createdAt');
+        }
+        this.setState({ users });
+      });
+      this.socket.on('history', (data)=> {
+        const users = this.state.users;
+        const from = _.find(users, { id: data.from });
+        if (from) {
+          if (_.isUndefined(from.history)) {
+            from.history = [];
+          }
+          from.history = _.sortBy(data.history, 'createdAt');
         }
         this.setState({ users });
       });
