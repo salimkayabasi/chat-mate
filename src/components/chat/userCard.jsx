@@ -9,6 +9,7 @@ class UserCard extends Component {
     };
     this.onMessageChange = this.onMessageChange.bind(this);
     this.say = this.say.bind(this);
+    this.getHistory = this.getHistory.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +18,12 @@ class UserCard extends Component {
 
   onMessageChange(event) {
     this.setState({ message: event.target.value });
+  }
+
+  getHistory() {
+    this.socket.emit('history', {
+      user: this.props.user.id,
+    });
   }
 
   say() {
@@ -32,15 +39,16 @@ class UserCard extends Component {
       <div>
         <img width={'64px'} height={'64px'} src={this.props.user.avatar} />
         <br />
-        <label>{this.props.user.username}</label>
+        <label onClick={this.getHistory}>{this.props.user.username}</label>
         <br />
         <input type="text" value={this.state.message} onChange={this.onMessageChange} />
         <button onClick={this.say}>Say</button>
         <br />
         {
-          this.props.user.logs && this.props.user.logs.map((msg, index) =>
+          this.props.user.history && this.props.user.history.map((message, index) =>
             (<div key={index}>
-              <label>{msg}</label>
+              <label>{message.createdAt}</label>
+              <label>{message.message}</label>
               <br />
             </div>
             ),
