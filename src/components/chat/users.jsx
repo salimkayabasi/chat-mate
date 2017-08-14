@@ -3,12 +3,20 @@ import React, { Component } from 'react';
 import UserCard from './userCard';
 
 class UserList extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.listStyle = {
+      width: '300px',
+    };
+  }
+
   render() {
     return (
-      <div>
+      <div style={this.listStyle}>
         <label>Connected Users: {this.props.users.length}</label>
-        <br />
-        {this.props.users.map(user => <UserCard user={user} key={user.id} />)}
+        <br/>
+        {this.props.users.map(user => <UserCard user={user} key={user.id}/>)}
       </div>
     );
   }
