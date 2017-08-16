@@ -27,6 +27,7 @@
     "docker-prod": "yarn --prod && rm -rf yarn.lock .yarnclean",
     "docker-build": "yarn run build && yarn run webpack && yarn docker-clean && yarn docker-prod",
     "docker": "docker build --build-arg GIT_HASH=$(git rev-parse --short HEAD) -t chatmate:$(git rev-parse --short HEAD) .",
+    "docker-compose": "docker-compose up --build",
     "heroku-postbuild": "yarn run build && yarn run webpack"
   },
   "devDependencies": {

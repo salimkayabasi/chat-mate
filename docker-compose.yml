@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    container_name: 'chatmate-web'
+    build: .
+    ports:
+    - "3000:3000"
+    links:
+    - redis
+    environment:
+    - REDIS_URL=redis://redis
+    - LOG_LAYOUT=colored
+  redis:
+    container_name: 'chatmate-redis'
+    image: redis
