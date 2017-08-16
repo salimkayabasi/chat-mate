@@ -14,25 +14,27 @@ class LoginBox extends React.Component {
     return (
       <form action="/login" method="post">
         <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="text"
-            name="email"
-            defaultValue={this.state.email}
-          />
+          <label htmlFor="email">Email:
+            <input
+              id="email"
+              type="text"
+              name="email"
+              defaultValue={this.state.email}
+            />
+          </label>
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            defaultValue={this.state.password}
-          />
+          <label htmlFor="password">Password:
+            <input
+              id="password"
+              type="password"
+              name="password"
+              defaultValue={this.state.password}
+            />
+          </label>
         </div>
         <div>
-          <input type="submit" value="Log In"/>
+          <input type="submit" value="Log In" />
         </div>
       </form>
     );

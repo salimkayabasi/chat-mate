@@ -11,6 +11,6 @@ export default () => {
     } else {
       next();
     }
-  }, render({ title: 'Welcome', component: <LoginBox/> }));
+  }, render({ title: 'Welcome', component: <LoginBox /> }));
   return router;
 };

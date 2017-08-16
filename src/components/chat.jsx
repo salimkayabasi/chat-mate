@@ -16,7 +16,7 @@ class Chat extends Component {
     };
     this.divStyle = {
       float: 'left',
-    }
+    };
   }
 
   componentDidMount() {
@@ -36,7 +36,9 @@ class Chat extends Component {
           if (_.isUndefined(from.history)) {
             from.history = [];
           }
-          from.history.push(data);
+          const payload = data;
+          payload.fromName = from.username;
+          from.history.push(payload);
           from.history = _.sortBy(from.history, 'createdAt');
         }
         this.setState({ users });
@@ -50,9 +52,10 @@ class Chat extends Component {
           }
 
           user.history = _.chain(data.history)
-            .map((log) => {
+            .map((item) => {
+              const log = item;
               try {
-                log.fromName = _.find(users, { id: log.from }).username
+                log.fromName = _.find(users, { id: log.from }).username;
               } catch (e) {
                 log.fromName = 'me';
               }
@@ -71,10 +74,10 @@ class Chat extends Component {
   render() {
     return (
       <div style={this.divStyle}>
-        <Welcome user={this.props.user}/> <LogOut/>
-        <br/>
-        <UserList users={this.state.users}/>
-        <MessageBox user={this.state.selectedUser}/>
+        <Welcome user={this.props.user} /> <LogOut />
+        <br />
+        <UserList users={this.state.users} />
+        <MessageBox user={this.state.selectedUser} />
       </div>
     );
   }
