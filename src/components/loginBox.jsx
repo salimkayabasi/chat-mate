@@ -32,7 +32,7 @@ class LoginBox extends React.Component {
           />
         </div>
         <div>
-          <input type="submit" value="Log In" />
+          <input type="submit" value="Log In"/>
         </div>
       </form>
     );

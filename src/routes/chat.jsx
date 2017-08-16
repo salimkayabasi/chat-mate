@@ -9,7 +9,7 @@ export default () => {
   router.get('/chat', auth, (req, res) => {
     render({
       title: 'chat',
-      component: <Chat user={req.user} />,
+      component: <Chat user={req.user}/>,
       jsPath: getFileName('bundle'),
       initial: {
         user: req.user,

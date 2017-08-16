@@ -2,6 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as io from 'socket.io-client';
+import MessageBox from './chat/messageBox';
 import UserList from './chat/users';
 import LogOut from './logout';
 import Welcome from './welcome';
@@ -11,7 +12,11 @@ class Chat extends Component {
     super(props, context);
     this.state = {
       users: [],
+      selectedUser: {},
     };
+    this.divStyle = {
+      float: 'left',
+    }
   }
 
   componentDidMount() {
@@ -21,6 +26,7 @@ class Chat extends Component {
         const users = _.filter(allUsers, user => user.id !== this.props.user.id);
         this.setState({
           users,
+          selectedUser: _.first(users),
         });
       });
       this.socket.on('message', (data) => {
@@ -35,16 +41,28 @@ class Chat extends Component {
         }
         this.setState({ users });
       });
-      this.socket.on('history', (data)=> {
+      this.socket.on('history', (data) => {
         const users = this.state.users;
-        const from = _.find(users, { id: data.from });
-        if (from) {
-          if (_.isUndefined(from.history)) {
-            from.history = [];
+        const user = _.find(users, { id: data.from });
+        if (user) {
+          if (_.isUndefined(user.history)) {
+            user.history = [];
           }
-          from.history = _.sortBy(data.history, 'createdAt');
+
+          user.history = _.chain(data.history)
+            .map((log) => {
+              try {
+                log.fromName = _.find(users, { id: log.from }).username
+              } catch (e) {
+                log.fromName = 'me';
+              }
+              return log;
+            })
+            .compact()
+            .sortBy(data.history, 'createdAt')
+            .value();
         }
-        this.setState({ users });
+        this.setState({ selectedUser: user });
       });
       window.socket = this.socket;
     }
@@ -52,10 +70,11 @@ class Chat extends Component {
 
   render() {
     return (
-      <div>
-        <Welcome user={this.props.user} /> <LogOut />
-        <br />
-        <UserList users={this.state.users} />
+      <div style={this.divStyle}>
+        <Welcome user={this.props.user}/> <LogOut/>
+        <br/>
+        <UserList users={this.state.users}/>
+        <MessageBox user={this.state.selectedUser}/>
       </div>
     );
   }
