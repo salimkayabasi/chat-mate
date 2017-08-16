@@ -13,7 +13,9 @@ class MessageBox extends Component {
       width: '500px',
       background: '#dee',
       cursor: 'pointer',
-    };
+      display: this.user ? 'block' : 'none',
+    }
+    ;
     this.myLineStyle = {
       textAlign: 'right',
     };
@@ -54,21 +56,26 @@ class MessageBox extends Component {
   render() {
     return (
       <div style={this.divStyle}>
-        <label>{this.props.user && this.props.user.username}</label>
-        <br/>
+        <strong>{this.props.user && this.props.user.username}</strong>
+        <br />
         {
-          this.props.user.history && this.props.user.history.map((message, index) =>
-            (<div key={index}
-                  style={message.fromName === 'me' ? this.myLineStyle : this.yourLineStyle}>
-                <strong>{message.fromName + ' ' + message.createdAt}</strong><br/>
-                <label>{message.message}</label>
-                <br/>
-              </div>
+          this.props.user
+          && this.props.user.history
+          && this.props.user.history.map((message, index) =>
+            (<div
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              style={message.fromName === 'me' ? this.myLineStyle : this.yourLineStyle}
+            >
+              <strong>{`${message.fromName} ${message.createdAt}`}</strong><br />
+              <p>{message.message}</p>
+              <br />
+            </div>
             ),
           )
         }
-        <br/>
-        <input type="text" value={this.state.message} onChange={this.onMessageChange}/>
+        <br />
+        <input type="text" value={this.state.message} onChange={this.onMessageChange} />
         <button onClick={this.say}>Say</button>
       </div>
     );
@@ -76,7 +83,7 @@ class MessageBox extends Component {
 }
 
 MessageBox.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
 };
 
 export default MessageBox;

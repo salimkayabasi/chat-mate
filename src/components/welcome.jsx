@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Welcome extends Component {
+class Welcome extends PureComponent {
   render() {
     return (
-      <label>Welcome! <strong>{this.props.user.name}</strong>({this.props.user.username})
-      </label>
+      <p>Welcome! <strong>{this.props.user.name}</strong>
+        ({this.props.user.username})
+      </p>
     );
   }
 }

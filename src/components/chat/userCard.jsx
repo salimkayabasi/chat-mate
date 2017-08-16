@@ -26,16 +26,16 @@ class UserCard extends Component {
 
   render() {
     return (
-      <div onClick={this.getHistory} style={this.divStyle}>
-        <img width={'64px'} height={'64px'} src={this.props.user.avatar}/>
-        <label>{this.props.user.username}</label>
+      <div onClick={this.getHistory} style={this.divStyle} role="button" tabIndex={0}>
+        <img width={'64px'} height={'64px'} src={this.props.user.avatar} alt="avatar" />
+        <strong>{this.props.user.username}</strong>
       </div>
     );
   }
 }
 
 UserCard.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
 };
 
 export default UserCard;
